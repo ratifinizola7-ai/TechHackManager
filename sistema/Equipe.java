@@ -1,54 +1,70 @@
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Equipe {
-    private Long id;
-    private String NomeProjeto;
-    private String Desccricao;
-    private Double NotaFinal;
+    private long id;
+    private String nome;
+    private String projeto;
+    private Double notaFinal;
 
-    private Mentor mentor;
     private Localizacao localizacao;
+    private Mentor mentor;
 
-    public Equipe() {
-    }
+    private List<Participante> participantes;
 
-    public Equipe(Long id, String nomeProjeto, String desccricao, Double notaFinal, Mentor mentor, Localizacao localizacao) {
+    public Equipe(long id, String nome, String projeto, Double notaFinal, Localizacao localizacao, Mentor mentor) {
         this.id = id;
-        NomeProjeto = nomeProjeto;
-        Desccricao = desccricao;
-        NotaFinal = notaFinal;
-        this.mentor = mentor;
+        this.nome = nome;
+        this.projeto = projeto;
+        this.notaFinal = notaFinal;
         this.localizacao = localizacao;
+        this.mentor = mentor;
+        this.participantes = new ArrayList<>();
     }
 
-    public Long getId() {
+    public void adicionarParticipante(Participante participante) {
+        this.participantes.add(participante);
+    }
+
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public String getNomeProjeto() {
-        return NomeProjeto;
+    public String getNome() {
+        return nome;
     }
 
-    public void setNomeProjeto(String nomeProjeto) {
-        NomeProjeto = nomeProjeto;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public String getDesccricao() {
-        return Desccricao;
+    public String getProjeto() {
+        return projeto;
     }
 
-    public void setDesccricao(String desccricao) {
-        Desccricao = desccricao;
+    public void setProjeto(String projeto) {
+        this.projeto = projeto;
     }
 
     public Double getNotaFinal() {
-        return NotaFinal;
+        return notaFinal;
     }
 
     public void setNotaFinal(Double notaFinal) {
-        NotaFinal = notaFinal;
+        this.notaFinal = notaFinal;
+    }
+
+    public Localizacao getLocalizacao() {
+        return localizacao;
+    }
+
+    public void setLocalizacao(Localizacao localizacao) {
+        this.localizacao = localizacao;
     }
 
     public Mentor getMentor() {
@@ -59,11 +75,11 @@ public class Equipe {
         this.mentor = mentor;
     }
 
-    public Localizacao getLocalizacao() {
-        return localizacao;
+    public List<Participante> getParticipantes() {
+        return participantes;
     }
 
-    public void setLocalizacao(Localizacao localizacao) {
-        this.localizacao = localizacao;
+    public void setParticipantes(List<Participante> participantes) {
+        this.participantes = participantes;
     }
 }

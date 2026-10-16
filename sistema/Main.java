@@ -1,9 +1,10 @@
 
+
 public class Main {
     public static void main(String[] args) {
+        EquipeRepository equipeRepository = new EquipeRepository();
 
         Localizacao local = new Localizacao(1L, "Laboratório A", 3, "Bloco B", 50);
-
         Mentor mentor = new Mentor(1L, "Ana Souza", "Arquitetura de Software", 5);
 
         Equipe equipe = new Equipe(1L, "CodeVanguarda", "TechHackManager", 9.8, local, mentor);
@@ -14,17 +15,21 @@ public class Main {
         equipe.adicionarParticipante(p1);
         equipe.adicionarParticipante(p2);
 
-        System.out.println("=== DADOS DO HACKATHON ===");
-        System.out.println("Equipe: " + equipe.getNome());
-        System.out.println("Projeto: " + equipe.getProjeto());
-        System.out.println("Nota Final: " + equipe.getNotaFinal());
-        System.out.println("Local: " + equipe.getLocalizacao().getSala() + " (" + equipe.getLocalizacao().getPredio() + ")");
-        System.out.println("Mentor: " + equipe.getMentor().getNome() + " - " + equipe.getMentor().getExpecialidade());
+        equipeRepository.salvar(equipe);
 
-        System.out.println("\n--- Participantes da Equipe ---");
+        System.out.println("=== DADOS DO HACKATHON (via Repositório) ===");
 
-        for (Participante participante : equipe.getParticipantes()) {
-            System.out.println("- " + participante.getNome() + " (Linguagens: " + participante.getLinguagemPrincipal() + ")");
+        for (Equipe e : equipeRepository.listarTodas()) {
+            System.out.println("Equipe: " + e.getNome());
+            System.out.println("Projeto: " + e.getProjeto());
+            System.out.println("Nota Final: " + e.getNotaFinal());
+            System.out.println("Local: " + e.getLocalizacao().getSala() + " (" + e.getLocalizacao().getPredio() + ")");
+            System.out.println("Mentor: " + e.getMentor().getNome() + " - " + e.getMentor().getEspecialidade());
+
+            System.out.println("\n--- Participantes da Equipe ---");
+            for (Participante participante : e.getParticipantes()) {
+                System.out.println("- " + participante.getNome() + " (Linguagens: " + participante.getLinguagemPrincipal() + ")");
+            }
         }
     }
 }

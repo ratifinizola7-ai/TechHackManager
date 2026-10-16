@@ -1,16 +1,16 @@
 public class Mentor {
     private Long id;
     private String nome;
-    private String expecialidade;
+    private String especialidade;
     private Integer ExperienciaAnos;
 
     public Mentor() {
     }
 
-    public Mentor(Long id, String nome, String expecialidade, Integer experienciaAnos) {
+    public Mentor(Long id, String nome, String especialidade, Integer experienciaAnos) {
         this.id = id;
         this.nome = nome;
-        this.expecialidade = expecialidade;
+        this.especialidade = especialidade;
         ExperienciaAnos = experienciaAnos;
     }
 
@@ -30,12 +30,12 @@ public class Mentor {
         this.nome = nome;
     }
 
-    public String getExpecialidade() {
-        return expecialidade;
+    public String getEspecialidade() {
+        return especialidade;
     }
 
-    public void setExpecialidade(String expecialidade) {
-        this.expecialidade = expecialidade;
+    public void setEspecialidade(String expecialidade) {
+        this.especialidade = expecialidade;
     }
 
     public Integer getExperienciaAnos() {

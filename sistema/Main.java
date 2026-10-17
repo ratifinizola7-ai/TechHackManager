@@ -4,8 +4,8 @@ public class Main {
     public static void main(String[] args) {
         EquipeRepository equipeRepository = new EquipeRepository();
 
-        Localizacao local = new Localizacao(1L, "Laboratório A", 3, "Bloco B", 50);
-        Mentor mentor = new Mentor(1L, "Ana Souza", "Arquitetura de Software", 5);
+        Localizacao local = new Localizacao(2L, "Laboratório A", 3, "Bloco B", 50);
+        Mentor mentor = new Mentor(3L, "Ana Souza", "Arquitetura de Software", 5);
 
         Equipe equipe = new Equipe(1L, "CodeVanguarda", "TechHackManager", 9.8, local, mentor);
 

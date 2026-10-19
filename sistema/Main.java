@@ -18,6 +18,7 @@ public class Main {
             System.out.println("1 - Cadastrar ou Atualizar Equipe");
             System.out.println("2 - Listar Todas as Equipes");
             System.out.println("3 - Remover Equipe por ID");
+            System.out.println("4 - Buscar Equipe por ID");
             System.out.println("0 - Sair");
             System.out.print("Escolha uma opção: ");
 
@@ -99,12 +100,33 @@ public class Main {
                     repository.deletar(idRemover);
                     break;
 
+                case 4:
+                    System.out.println("\n--- BUSCAR EQUIPE POR ID ---");
+                    System.out.print("Digite o ID da equipe: ");
+                    long idBusca = scanner.nextLong();
+                    scanner.nextLine();
+
+                    Equipe encontrada = repository.buscarPorId(idBusca);
+                    if (encontrada != null) {
+                        System.out.println("--------------------------------");
+                        System.out.println("Equipe Encontrada:");
+                        System.out.println("ID: " + encontrada.getId());
+                        System.out.println("Equipe: " + encontrada.getNome());
+                        System.out.println("Projeto: " + encontrada.getProjeto());
+                        System.out.println("Nota Final: " + encontrada.getNotaFinal());
+                        System.out.println("Mentor: " + encontrada.getMentor().getNome() + " (" + encontrada.getMentor().getEspecialidade() + ", " + encontrada.getMentor().getExperienciaAnos() + " anos exp.)");
+                        System.out.println("Local: " + encontrada.getLocalizacao().getSala() + " - " + encontrada.getLocalizacao().getPredio() + " (Cap: " + encontrada.getLocalizacao().getCapacidadeMaxima() + ")");
+                    } else {
+                        System.out.println("Nenhuma equipe encontrada com o ID " + idBusca);
+                    }
+                    break;
+
                 case 0:
                     System.out.println("A encerrar o sistema... Até logo!");
                     break;
 
                 default:
-                    System.out.println("Opção inválida! Escolha entre 0 e 3.");
+                    System.out.println("Opção inválida! Escolha entre 0 e 4.");
             }
 
         } while (opcao != 0);

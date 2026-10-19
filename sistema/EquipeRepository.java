@@ -44,9 +44,11 @@ public class EquipeRepository {
                 pstmt.setString(2, equipe.getNome());
                 pstmt.setString(3, equipe.getProjeto());
                 pstmt.setDouble(4, equipe.getNotaFinal());
+                // Mentor
                 pstmt.setString(5, equipe.getMentor().getNome());
                 pstmt.setString(6, equipe.getMentor().getEspecialidade());
                 pstmt.setInt(7, equipe.getMentor().getExperienciaAnos());
+                // Localização
                 pstmt.setString(8, equipe.getLocalizacao().getSala());
                 pstmt.setString(9, equipe.getLocalizacao().getPredio());
                 pstmt.setInt(10, equipe.getLocalizacao().getCapacidadeMaxima());
@@ -94,6 +96,44 @@ public class EquipeRepository {
         }
 
         return equipes;
+    }
+
+    public Equipe buscarPorId(long id) {
+        String sql = "SELECT * FROM equipe WHERE id = ?";
+        Equipe equipe = null;
+
+        try (Connection conn = ConexaoBD.conectar();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            if (conn != null) {
+                pstmt.setLong(1, id);
+                try (ResultSet rs = pstmt.executeQuery()) {
+                    if (rs.next()) {
+                        String nome = rs.getString("nome");
+                        String projeto = rs.getString("projeto");
+                        double notaFinal = rs.getDouble("notaFinal");
+
+                        String mentorNome = rs.getString("mentorNome");
+                        String especialidade = rs.getString("especialidade");
+                        int experienciaAnos = rs.getInt("experienciaAnos");
+
+                        String localNome = rs.getString("localNome");
+                        String bloco = rs.getString("bloco");
+                        int capacidade = rs.getInt("capacidade");
+
+                        Localizacao localizacao = new Localizacao(1L, localNome, 1, bloco, capacidade);
+                        Mentor mentor = new Mentor(1L, mentorNome, especialidade, experienciaAnos);
+
+                        equipe = new Equipe(id, nome, projeto, notaFinal, localizacao, mentor);
+                    }
+                }
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Erro ao buscar equipe por ID: " + e.getMessage());
+        }
+
+        return equipe;
     }
 
     public void deletar(long id) {

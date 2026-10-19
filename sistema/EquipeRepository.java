@@ -44,11 +44,9 @@ public class EquipeRepository {
                 pstmt.setString(2, equipe.getNome());
                 pstmt.setString(3, equipe.getProjeto());
                 pstmt.setDouble(4, equipe.getNotaFinal());
-                // Mentor
                 pstmt.setString(5, equipe.getMentor().getNome());
                 pstmt.setString(6, equipe.getMentor().getEspecialidade());
                 pstmt.setInt(7, equipe.getMentor().getExperienciaAnos());
-                // Localização
                 pstmt.setString(8, equipe.getLocalizacao().getSala());
                 pstmt.setString(9, equipe.getLocalizacao().getPredio());
                 pstmt.setInt(10, equipe.getLocalizacao().getCapacidadeMaxima());
